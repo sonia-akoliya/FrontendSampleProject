@@ -1,26 +1,19 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from "react-redux";
+import fetchLoginUser from './login.action';
 
 const Login = () => {
+    const dispatch = useDispatch();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post(
-                'https://localhost:44300/api/FirstPage/login',
-                {
-                    username,
-                    password,
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                }
-            );
-
-            console.log(response); // Check the response in the console
+            const queryFilter = {
+                "Username": username,
+                "Password": password
+            }
+            dispatch(fetchLoginUser({ body: queryFilter }));
         } catch (error) {
             console.error('POST request failed', error);
         }
