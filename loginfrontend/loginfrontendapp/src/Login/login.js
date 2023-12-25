@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import fetchLoginUser from './login.action';
+import {selectLoginUser} from './login.selector';
+import {fetchLoginUser} from './login.action';
 
 const Login = () => {
     const dispatch = useDispatch();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+    const selectedLoginUser = useSelector(selectLoginUser);
+console.log(selectedLoginUser,'selectedLoginUserselectedLoginUser');
     const handleLogin = async () => {
         try {
             const queryFilter = {

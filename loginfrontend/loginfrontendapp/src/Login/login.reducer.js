@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   fetchLoginUser
-} from "./index";
+} from "./login.action";
 
 const initialState = {
   user : null,
@@ -19,7 +19,7 @@ const slice = createSlice({
     builder
     .addCase(fetchLoginUser.fulfilled, (state, action) => {
         if (!action.payload) return;
-        state.user = action.payload.output;
+        state.user = action.payload;
       })
   },
 });
