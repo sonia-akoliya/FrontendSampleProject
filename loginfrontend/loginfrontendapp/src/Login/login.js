@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { selectLoginUser } from './login.selector';
 import { fetchLoginUser } from './login.action';
 import { actions as loginActions } from './login.reducer';
@@ -9,6 +10,7 @@ const { setLoginUser } =
 
 const Login = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const selectedLoginUser = useSelector(selectLoginUser);
@@ -20,7 +22,8 @@ const Login = () => {
                 "Password": password
             }
             dispatch(fetchLoginUser({ body: queryFilter }));  // api calling
-            dispatch(setLoginUser(queryFilter));  // setting value by reducer
+            //dispatch(setLoginUser(queryFilter));  // setting value by reducer
+             navigate('/welcome');
         } catch (error) {
             console.error('POST request failed', error);
         }
