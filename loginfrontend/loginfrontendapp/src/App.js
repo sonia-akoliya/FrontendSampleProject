@@ -3,7 +3,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './Login/login';
-import WelcomePage from './Login/welcome'; 
+import WelcomePage from './Login/welcome';
+import Register from './Register/register'
 import createStore from './createStore';
 import rootReducer from './rootReducer';
 
@@ -15,8 +16,9 @@ function App() {
       <Router>
         <div className="App">
           <Routes>
-          <Route path="/" element={<Login />} />
+            <Route path="/" element={<Login />} />
             <Route path="/welcome" element={<WelcomePage />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </div>
       </Router>

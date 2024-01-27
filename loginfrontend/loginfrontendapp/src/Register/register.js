@@ -1,39 +1,39 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import { selectLoginUser } from './login.selector';
-import { fetchLoginUser } from './login.action';
-import { actions as loginActions } from './login.reducer';
+import { selectRegisterUser } from './register.selector';
+import { fetchRegisterUser } from './register.action';
+import { actions as registerActions } from './register.reducer';
 
-const { setLoginUser } = loginActions;
+const { setRegisterUser } =
+    registerActions;
 
-const Login = () => {
+const Register = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const selectedLoginUser = useSelector(selectLoginUser);
 
-    const handleLogin = async () => {
+    const handleRegister = async () => {
         try {
             const queryFilter = {
                 "Username": username,
                 "Password": password
-            };
-            dispatch(fetchLoginUser({ body: queryFilter }));
-            selectedLoginUser && navigate('/welcome');
+            }
+            dispatch(fetchRegisterUser({ body: queryFilter }));  // api calling
+            //dispatch(setRegisterUser(queryFilter));  // setting value by reducer
         } catch (error) {
             console.error('POST request failed', error);
         }
     };
 
-    const handleRegisterClick = () => {
-        navigate('/register');
+    const handleLogin = () => {
+        navigate('/');
     };
 
     return (
         <div>
-            <h2>Login</h2>
+            <h2>Register</h2>
             <input
                 type="text"
                 placeholder="Username"
@@ -46,10 +46,10 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
+            <button onClick={handleRegister}>Submit</button>
             <button onClick={handleLogin}>Login</button>
-            <button onClick={handleRegisterClick}>Register</button>
         </div>
     );
 };
 
-export default Login;
+export default Register;
