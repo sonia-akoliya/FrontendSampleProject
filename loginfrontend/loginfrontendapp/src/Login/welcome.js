@@ -8,7 +8,9 @@ const WelcomePage = () => {
   return (
     <div>
       <h2>Welcome to the Dashboard!</h2>
-      <h3>{selectedLoginUser?.token}</h3>
+      <h3>Id:- {selectedLoginUser?.userInfo.id}</h3>
+      <h3>UserName:- {selectedLoginUser?.userInfo.userName}</h3>
+      <h3>Password:- {selectedLoginUser?.userInfo.password}</h3>
     </div>
   );
 };
